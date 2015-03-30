@@ -3,6 +3,7 @@ MAINTAINER Jian-Long Huang <jlhgln@gmail.com>
 ENV HOME /root
 RUN yum -y update && \
     yum -y reinstall glibc-common && \
+    yum -y groupinstall "Development tools" && \
     yum -y install tmux git htop emacs make ack tar \
                    zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel \
                    gcc openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel && \
@@ -18,4 +19,6 @@ RUN /tmp/install_tmux_plugins.sh && rm /tmp/install_tmux_plugins.sh
 RUN git clone https://github.com/yyuu/pyenv.git ${HOME}/.pyenv
 RUN git clone https://github.com/yyuu/pyenv-virtualenv.git ${HOME}/.pyenv/plugins/pyenv-virtualenv
 RUN git clone https://github.com/sstephenson/rbenv.git ${HOME}/.rbenv
+RUN git clone https://github.com/sstephenson/ruby-build.git ${HOME}/.rbenv/plugins/ruby-build
 COPY bashrc ${HOME}/.bashrc
+RUN yum -y install patch && yum -y clean all
