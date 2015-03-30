@@ -48,3 +48,6 @@ eval "$(pyenv virtualenv-init -)"
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# git bash completion
+test -f /etc/bash_completion.d/git && . /etc/bash_completion.d/git
